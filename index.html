@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+
+		<title>Introduction to Rust</title>
+
+		<meta name="description" content="This deck gives an introduction to Rust">
+		<meta name="author" content="Jan Van Sweevelt">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<section class="title-slide">
+					<h2>Introduction to Rust</h2>
+					<p>
+						<small>by Jan Van Sweevelt</small>
+					</p>
+				</section>
+
+				<section>
+					<h2>Who am I ?</h2>
+					<ul>
+						<li>Background and Education in embedded system design and development</li>
+						<li>Experience in a very broad range of projects</li>
+						<li>Works at Philips since 2015 in the Concepts group at the Hightech Campus</li>
+						<li>Personal interest in realtime 3D graphics and hardware (OpenGL, Cuda, ...)</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Introduction to Rust</h2>
+					<ul>
+						<li>Ownership</li>
+						<li>Borrowing</li>
+						<li>Tooling</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>What is Rust ?</h2>
+					Rust is a systems programming language that runs blazingly fast, prevents almost all
+					crashes, and eliminates data races.
+					<pre><code class="language-rust">
+						fn main() {
+    						println!("Hello, {}", "world!");
+						}
+  					</code></pre>
+				</section>
+
+				<section>
+					<h2>Why Rust ?</h2>
+					TODO
+				</section>
+
+				<section>
+					<h2>Systems Programming Language</h2>
+					<ul>
+						<li>Fine grained control over allocation</li>
+						<li>No required garbage collector</li>
+						<li>Minimal runtime</li>
+						<li>"Close to the metal"</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Runs blazing fast</h2>
+					<ul>
+						<li>Compiles to an executable binary</li>
+						<li>LLVM backend</li>
+						<li>LLVM's suite of optimizations</li>
+						<li>Competitive with C/C++</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Prevents almost all crashes</h2>
+					<ul>
+						<li>Safe by default</li>
+						<li>Sophisticated type system and analysis</li>
+						<li>No segfaults</li>
+						<li>No null pointers</li>
+						<li>No dangling pointers</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Eliminates data races</h2>
+					<ul>
+						<li>Ownership guarantees</li>
+						<li>Borrowing prevents dangling pointers</li>
+						<li>Strong, safe abstractions</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Ownership</h2>
+					<p>Variables are moved to new locations, preventing the previous location from using it</p>
+					There is only one owner of the data !!!
+				</section>
+
+				<section>
+					<h2>Ownership</h2>
+					<pre><code class="language-c">
+						int main() {
+    						int *slot = malloc(sizeof(int));
+    						*slot = 3;
+    						helper(slot);
+    						helper(slot);
+						}
+
+						void helper(int *slot) {
+    						printf("The number was: %d\n", *slot);
+    						free(slot);
+						}
+  					</code></pre>
+					<pre><code class="language-bash">
+						❯ ./a.out
+						The number was: 3
+						The number was: 1595491008
+						free(): double free detected in tcache 2
+						Aborted (core dumped)
+					</code>
+					</pre>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
