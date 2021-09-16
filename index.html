@@ -106,6 +106,26 @@
 				</section>
 
 				<section>
+					<h2>Who's using Rust ?</h2>
+				</section>
+
+				<section>
+					<h2>Rust is using Rust !</h2>
+					Makeup of code in the Rust repository
+					<ul>
+						<li>92% Rust</li>
+						<li>3.6% C (bundled libraries)</li>
+						<li>1.6% shell scripts</li>
+						<li>3.0% other</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Servo</h2>
+					Parallel layout engine written in Rust pushing browser layout to new boundaries
+				</section>
+
+				<section>
 					<h2>Ownership</h2>
 					<p>Variables are moved to new locations, preventing the previous location from using it</p>
 					There is only one owner of the data !!!
@@ -134,6 +154,63 @@
 						Aborted (core dumped)
 					</code>
 					</pre>
+				</section>
+
+				<section>
+					<h2>Ownership</h2>
+					<pre><code class="language-rust">
+						fn main() {
+    						let slot = Box::new(3);
+
+    						helper(slot);  // moves the value !
+    						helper(slot);  // error: use of moved value
+						}
+
+						fn helper(slot: Box&lt;i32&gt;) {
+    						println!("The number was: {}", slot);
+						}
+  					</code></pre>
+					<pre><code class="language-bash"><script type="text/template">
+            --> src/main.rs:5:12
+           4 |     helper(slot);
+             |            ---- value moved here
+           5 |     helper(slot);
+             |            ^^^^ value used here after move
+					</script>
+					</code>
+					</pre>
+				</section>
+
+				<section>
+					<h2>Ownership</h2>
+					<pre><code class="language-rust">
+						fn helper() -> Box&lt;i32&gt; {
+    						let three = Box::new(3);
+						    return three; // transfer ownership
+						}
+
+						fn main() {
+                // acquire ownership of return value
+						    let my_three = helper();
+						}
+
+  					</code></pre>
+				</section>
+
+				<section>
+					<h2>Ownership</h2>
+					Ownership is a deep property of a type
+					<pre><code class="language-rust">
+						struct A {b: B}
+						struct B {c: Box&lt;i32&gt;}
+
+						fn main() {
+						    let a: A = A { b: B { c: Box::new(2) } };
+						    let c = a.b.c;
+
+						    let b: B = a.b; // error ! (moved by 'c')off
+						}
+					</code></pre>
 				</section>
 
 			</div>
