@@ -213,6 +213,101 @@
 					</code></pre>
 				</section>
 
+				<section>
+					<h2>Borrowing</h2>
+					Owned values can be borrowed in Rust to allow usage for a certain period of time.
+					<pre><code class="language-rust">
+						// The '&' sigil means "borrowed reference"
+						fn helper(slot: &Vec&lt;i32&gt;) { /* ... */ }
+
+						fn main() {
+						    let a = Vec::new();
+
+						    // doesn't move !
+						    helper(&a);
+						    helper(&a);
+						}
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Borrowing</h2>
+					Borrowed values are only valid for a particular lifetime
+					<pre><code class="language-rust">
+						let a: &amp;int;
+				    {
+						    let b = 3;
+						    a = &amp;b;
+				    } // error ! 'b' does not live long enough
+					</code></pre>
+
+					<pre><code class="language-rust">
+				    let a: &amp;int;
+				    let b = 3;
+				    a = &amp;b; // ok, 'b' has the same lifetime as 'a'
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Borrowing</h2>
+					Borrowing prevents moving
+					<pre><code class="language-rust">
+						let a = Vec::new();
+				    let b = &amp;a;
+					  work_with(a); // error !
+					</code></pre>
+
+					<pre><code class="language-rust">
+				    let a = Vec::new();
+				    {
+						    let b = &amp;a;
+					  }
+				    work_with(a); // ok
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Borrowing</h2>
+					A common mistake in C:
+					<pre><code class="language-rust">
+						fn main() {
+						    println!("Your number was: {}", *helper());
+						}
+
+						fn helper() -> &i32 {
+							let a = 3;
+							return &amp;a;
+						}
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Borrowing</h2>
+					Borrows can be nested
+					<pre><code class="language-rust">
+						struct MyStruct { inner: i32 }
+
+						fn get(s: &MyStruct) -> &i32 {
+							&a.inner
+						}
+
+						fn main() {
+						    let a = MyStruct { inner: 3 };
+							  let inner = get(&s); // same lifetime as 'a'
+						}
+					</code></pre>
+				</section>
+
+                <section>
+					<h2>Borrowing</h2>
+					Borrowed values can become owned values through cloning
+					<pre><code class="language-rust">
+						fn clone_vector(v: &Vec&lt;i32&gt;) -> Vec&lt;i32&gt; {
+							v.clone()
+						}
+					</code></pre>
+				</section>
+
 			</div>
 		</div>
 
