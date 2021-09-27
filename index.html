@@ -68,40 +68,40 @@
 				<section>
 					<h2>Systems Programming Language</h2>
 					<ul>
-						<li>Fine grained control over allocation</li>
-						<li>No required garbage collector</li>
-						<li>Minimal runtime</li>
-						<li>"Close to the metal"</li>
+						<li class="fragment fade-in-then-semi-out">Fine grained control over allocation</li>
+						<li class="fragment fade-in-then-semi-out">No required garbage collector</li>
+						<li class="fragment fade-in-then-semi-out">Minimal runtime</li>
+						<li class="fragment fade-in-then-semi-out">Close to the metal</li>
 					</ul>
 				</section>
 
 				<section>
 					<h2>Runs blazing fast</h2>
 					<ul>
-						<li>Compiles to an executable binary</li>
-						<li>LLVM backend</li>
-						<li>LLVM's suite of optimizations</li>
-						<li>Competitive with C/C++</li>
+						<li class="fragment fade-in-then-semi-out">Compiles to an executable binary</li>
+						<li class="fragment fade-in-then-semi-out">LLVM backend</li>
+						<li class="fragment fade-in-then-semi-out">LLVM's suite of optimizations</li>
+						<li class="fragment fade-in-then-semi-out">Competitive with C/C++</li>
 					</ul>
 				</section>
 
 				<section>
 					<h2>Prevents almost all crashes</h2>
 					<ul>
-						<li>Safe by default</li>
-						<li>Sophisticated type system and analysis</li>
-						<li>No segfaults</li>
-						<li>No null pointers</li>
-						<li>No dangling pointers</li>
+						<li class="fragment fade-in-then-semi-out">Safe by default</li>
+						<li class="fragment fade-in-then-semi-out">Sophisticated type system and analysis</li>
+						<li class="fragment fade-in-then-semi-out">No segfaults</li>
+						<li class="fragment fade-in-then-semi-out">No null pointers</li>
+						<li class="fragment fade-in-then-semi-out">No dangling pointers</li>
 					</ul>
 				</section>
 
 				<section>
 					<h2>Eliminates data races</h2>
 					<ul>
-						<li>Ownership guarantees</li>
-						<li>Borrowing prevents dangling pointers</li>
-						<li>Strong, safe abstractions</li>
+						<li class="fragment fade-in-then-semi-out">Ownership guarantees</li>
+						<li class="fragment fade-in-then-semi-out">Borrowing prevents dangling pointers</li>
+						<li class="fragment fade-in-then-semi-out">Strong, safe abstractions</li>
 					</ul>
 				</section>
 
@@ -113,10 +113,10 @@
 					<h2>Rust is using Rust !</h2>
 					Makeup of code in the Rust repository
 					<ul>
-						<li>92% Rust</li>
-						<li>3.6% C (bundled libraries)</li>
-						<li>1.6% shell scripts</li>
-						<li>3.0% other</li>
+						<li class="fragment fade-in-then-semi-out">92% Rust</li>
+						<li class="fragment fade-in-then-semi-out">3.6% C (bundled libraries)</li>
+						<li class="fragment fade-in-then-semi-out">1.6% shell scripts</li>
+						<li class="fragment fade-in-then-semi-out">3.0% other</li>
 					</ul>
 				</section>
 
@@ -133,7 +133,7 @@
 
 				<section>
 					<h2>Ownership</h2>
-					<pre><code class="language-c">
+					<pre><code class="language-c fragment">
 						int main() {
     						int *slot = malloc(sizeof(int));
     						*slot = 3;
@@ -146,7 +146,7 @@
     						free(slot);
 						}
   					</code></pre>
-					<pre><code class="language-bash">
+					<pre><code class="language-bash fragment">
 						❯ ./a.out
 						The number was: 3
 						The number was: 1595491008
@@ -158,7 +158,7 @@
 
 				<section>
 					<h2>Ownership</h2>
-					<pre><code class="language-rust">
+					<pre><code class="language-rust fragment">
 						fn main() {
     						let slot = Box::new(3);
 
@@ -170,7 +170,7 @@
     						println!("The number was: {}", slot);
 						}
   					</code></pre>
-					<pre><code class="language-bash"><script type="text/template">
+					<pre><code class="language-bash fragment"><script type="text/template">
             --> src/main.rs:5:12
            4 |     helper(slot);
              |            ---- value moved here
@@ -233,7 +233,7 @@
 				<section>
 					<h2>Borrowing</h2>
 					Borrowed values are only valid for a particular lifetime
-					<pre><code class="language-rust">
+					<pre><code class="language-rust fragment">
 						let a: &amp;int;
 				    {
 						    let b = 3;
@@ -241,7 +241,7 @@
 				    } // error ! 'b' does not live long enough
 					</code></pre>
 
-					<pre><code class="language-rust">
+					<pre><code class="language-rust fragment">
 				    let a: &amp;int;
 				    let b = 3;
 				    a = &amp;b; // ok, 'b' has the same lifetime as 'a'
@@ -251,13 +251,13 @@
 				<section>
 					<h2>Borrowing</h2>
 					Borrowing prevents moving
-					<pre><code class="language-rust">
+					<pre><code class="language-rust fragment">
 						let a = Vec::new();
 				    let b = &amp;a;
 					  work_with(a); // error !
 					</code></pre>
 
-					<pre><code class="language-rust">
+					<pre><code class="language-rust fragment">
 				    let a = Vec::new();
 				    {
 						    let b = &amp;a;
@@ -312,20 +312,20 @@
 					<h2>Tooling</h2>
 					Rust is not only a compiler but is a whole ecosystem of tools
 					<ul>
-						<li>Cargo is the build tool</li>
-						<li>Rust Language Server brings editor support to an editor near you</li>
-						<li>Built in unittest framework</li>
-						<li>Clippy is a linter tool</li>
-						<li>Rustfmt is a rust code formatter with editor integration</li>
-						<li>Cargo doc is a document builder</li>
+						<li class="fragment fade-in-then-semi-out">Cargo is the build tool</li>
+						<li class="fragment fade-in-then-semi-out">Rust Language Server brings editor support to an editor near you</li>
+						<li class="fragment fade-in-then-semi-out">Built in unittest framework</li>
+						<li class="fragment fade-in-then-semi-out">Clippy is a linter tool</li>
+						<li class="fragment fade-in-then-semi-out">Rustfmt is a rust code formatter with editor integration</li>
+						<li class="fragment fade-in-then-semi-out">Cargo doc is a document builder</li>
 					</ul>
 				</section>
 
 				<section>
 					<h2>Tooling</h2>
 					<ul>
-						<li>crates.io to publish your crates and serve documentation</li>
-						<li>crates.io can be setup on premise, for packages that cannot be published</li>
+						<li class="fragment fade-in-then-semi-out">crates.io to publish your crates and serve documentation</li>
+						<li class="fragment fade-in-then-semi-out">crates.io can be setup on premise, for packages that cannot be published</li>
 					</ul>
 				</section>
 
@@ -333,10 +333,10 @@
 					<h2>Tooling</h2>
 					Lots of tools integrated in Cargo are starting to come in the ecosystem
 					<ul>
-						<li>cargo tarpaulin is a coverage tool</li>
-						<li>cargo audit checks for security vulnerabilities</li>
-						<li>cargo outdated checks for outdated crates</li>
-						<li>...</li>
+						<li class="fragment fade-in-then-semi-out">cargo tarpaulin is a coverage tool</li>
+						<li class="fragment fade-in-then-semi-out">cargo audit checks for security vulnerabilities</li>
+						<li class="fragment fade-in-then-semi-out">cargo outdated checks for outdated crates</li>
+						<li class="fragment fade-in-then-semi-out">...</li>
 					</ul>
 				</section>
 
