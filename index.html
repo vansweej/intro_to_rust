@@ -46,10 +46,17 @@
 				<section>
 					<h2>Introduction to Rust</h2>
 					<ul>
-						<li>Introduction</li>
+						<li>What</li>
 						<li>Ownership</li>
 						<li>Borrowing</li>
 						<li>Tooling</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Introduction to Rust</h2>
+					<ul>
+						<li>What</li>
 					</ul>
 				</section>
 
@@ -62,6 +69,10 @@
     						println!("Hello, {}", "world!");
 						}
   					</code></pre>
+					<aside class="notes">
+						Rust is an imperative language and allow functional constructs.
+						It is not a hybrid (like scala)
+					</aside>
 				</section>
 
 				<section>
@@ -73,7 +84,7 @@
 					<h2>Systems Programming Language</h2>
 					<ul>
 						<li class="fragment fade-in-then-semi-out">Fine grained control over allocation</li>
-						<li class="fragment fade-in-then-semi-out">No required garbage collector</li>
+						<li class="fragment fade-in-then-semi-out">No garbage collector</li>
 						<li class="fragment fade-in-then-semi-out">Minimal runtime</li>
 						<li class="fragment fade-in-then-semi-out">Close to the metal</li>
 					</ul>
@@ -118,8 +129,8 @@
 					Makeup of code in the Rust repository
 					<ul>
 						<li class="fragment fade-in-then-semi-out">92% Rust</li>
-						<li class="fragment fade-in-then-semi-out">3.6% C (bundled libraries)</li>
-						<li class="fragment fade-in-then-semi-out">1.6% shell scripts</li>
+						<li class="fragment fade-in-then-semi-out">3.5% C (bundled libraries)</li>
+						<li class="fragment fade-in-then-semi-out">1.5% shell scripts</li>
 						<li class="fragment fade-in-then-semi-out">3.0% other</li>
 					</ul>
 				</section>
@@ -127,6 +138,14 @@
 				<section>
 					<h2>Servo</h2>
 					Parallel layout engine written in Rust pushing browser layout to new boundaries
+				</section>
+
+				<section>
+					<h2>Introduction to Rust</h2>
+					<ul>
+						<li>What</li>
+						<li>Ownership</li>
+					</ul>
 				</section>
 
 				<section>
@@ -188,6 +207,7 @@
 				<section>
 					<h2>Ownership</h2>
 					<pre><code class="language-rust">
+						Transfer of ownership
 						fn helper() -> Box&lt;i32&gt; {
     						let three = Box::new(3);
 						    return three; // transfer ownership
@@ -210,11 +230,30 @@
 
 						fn main() {
 						    let a: A = A { b: B { c: Box::new(2) } };
-						    let c = a.b.c;
+						    let x = a.b.c;
 
-						    let b: B = a.b; // error ! (moved by 'c')off
+						    let y: B = a.b; // error ! (moved by 'x')
 						}
 					</code></pre>
+				</section>
+
+				<section>
+					<h2>Ownership</h2>
+					Ownership rules
+					<ul>
+						<li>Each value in Rust has a variable called its owner</li>
+						<li>There can be only one owner at a time</li>
+						<li>When the owner goes out of scope, the value will be dropped</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Introduction to Rust</h2>
+					<ul>
+						<li>What</li>
+						<li>Ownership</li>
+						<li>Borrowing</li>
+					</ul>
 				</section>
 
 				<section>
@@ -292,12 +331,12 @@
 						struct MyStruct { inner: i32 }
 
 						fn get(s: &MyStruct) -> &i32 {
-							&a.inner
+							&s.inner
 						}
 
 						fn main() {
 						    let a = MyStruct { inner: 3 };
-							  let inner = get(&s); // same lifetime as 'a'
+							  let inner = get(&a); // same lifetime as 'a'
 						}
 					</code></pre>
 				</section>
@@ -310,6 +349,29 @@
 							v.clone()
 						}
 					</code></pre>
+				</section>
+
+				<section>
+					<h2>Borrowing</h2>
+					Borrowing rules
+					<ul>
+						<li>At any given time, you can have either but not both of the following:
+						<ul>
+							<li>one mutable reference</li>
+							<li>any number of immutable references</li>
+						</ul></li>
+						<li>References must always be valid</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Introduction to Rust</h2>
+					<ul>
+						<li>What</li>
+						<li>Ownership</li>
+						<li>Borrowing</li>
+						<li>Tooling</li>
+					</ul>
 				</section>
 
 				<section>
@@ -356,6 +418,11 @@
 
 				<section>
 					<h2>Experiences</h2>
+				</section>
+
+				<section>
+					<h2>Jan Van Sweevelt</h2>
+					jan.van.sweevelt@philips.com
 				</section>
 
 			</div>
